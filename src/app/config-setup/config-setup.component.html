@@ -3,7 +3,7 @@
 <div class="config-form" [formGroup]="configForm">
     <mat-form-field style="float: left">
         <mat-label>Configuration</mat-label>
-        <mat-select [(value)]="selectedOption.config" formControlName="configSelect">
+        <mat-select id="configSelect" [(value)]="selectedOption.config" formControlName="configSelect">
             @for (config of carConfigs; track config; let idx = $index) {
                 <mat-option [value]="config">
                     {{ config.description }}
@@ -11,15 +11,19 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-checkbox [(ngModel)]="selectedOption.towHitch" formControlName="towCheck">
-        Tow Hitch
-    </mat-checkbox>
-    <mat-checkbox [(ngModel)]="selectedOption.yoke" formControlName="yokeCheck">
-        Yoke Steering Wheel
-    </mat-checkbox>
     <p *ngIf="status">
         {{ carOptionText }}
     </p>
+    @if (towAvailable) {
+        <mat-checkbox id="includeTow" [(ngModel)]="selectedOption.towHitch" formControlName="towCheck">
+            Tow Hitch
+        </mat-checkbox>
+    }
+    @if (yokeAvailable) {
+        <mat-checkbox id="includeYoke"  [(ngModel)]="selectedOption.yoke" formControlName="yokeCheck">
+            Yoke Steering Wheel
+        </mat-checkbox>
+    }
 </div>
 
   

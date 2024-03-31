@@ -30,9 +30,7 @@ export class CarCustomizationService {
   }
 
   modelSetupValidated(model: CarModel) {
-    // console.log(this.carSummary);
     this.carSummary.model = model;
-    console.log(this.carSummary.model.color);
     this.customizationSteps[1] = true;
   }
 

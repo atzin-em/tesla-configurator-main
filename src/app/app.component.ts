@@ -19,13 +19,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   readonly name: string = 'tesla-configurator';
-  // link: string = "";
   activeLink: number = 0;
   routes: string[] = [];
 
   constructor(private carCustomizationService: CarCustomizationService, private router: Router) {
-    // this.carCustomizationService = _carCustomizationService;
-    console.log(this.router.config)
     
     this.routes = this.router.config
       .filter(routes => routes.component)
@@ -34,7 +31,6 @@ export class AppComponent {
 
   linkClick(idx: number) {
     this.activeLink = idx;
-    console.log(idx);
   }
 
   canActivate(index: number): boolean {

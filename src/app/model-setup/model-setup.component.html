@@ -3,7 +3,7 @@
 <div class="model-form" [formGroup]="modelForm">
     <mat-form-field style="float: left">
         <mat-label>Model</mat-label>
-        <mat-select formControlName="modelSelect">
+        <mat-select id="modelSelect" formControlName="modelSelect">
             @for (model of carModels; track model; let idx = $index) {
                 <mat-option [value]="model">
                     {{ model.description }}
@@ -13,7 +13,7 @@
     </mat-form-field>
     <mat-form-field style="float: left">
         <mat-label>Color</mat-label>
-        <mat-select formControlName="colorSelect">
+        <mat-select id="colorSelect" formControlName="colorSelect">
             @for (color of modelSelect.value.colors; track color; let idx = $index) {
                 <mat-option [value]="color">
                     {{ color.description }}

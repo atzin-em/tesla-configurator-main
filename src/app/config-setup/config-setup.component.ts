@@ -37,11 +37,9 @@ export class ConfigSetupComponent {
     price: 0
   };
   private carOptions: CarOptions = { configs: [], towHitch: false, yoke: false }
-
+  towAvailable: boolean = false;
+  yokeAvailable: boolean = false;
   selectedOption: CarOption; // = { 
-  //   config: { id: 0, description: '', range: 0, speed: 0, price: 0}, 
-  //   towHitch: false, yoke: false 
-  // }
 
   status: boolean = false;
   carOptionText: string = "";
@@ -78,6 +76,8 @@ export class ConfigSetupComponent {
     customizationService.getCarOptions().subscribe(
       response => {
         this.carOptions = response;
+        this.towAvailable = response.towHitch;
+        this.yokeAvailable = response.yoke
         this.configSelect.clearValidators();
         this.configSelect.addValidators(createSelectValidator(this.carConfigs));
         this.configSelect.setValue(this.carOptions.configs.find(config => config.id == customizationService.carSummary.config.id) || this.nullConfig);

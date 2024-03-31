@@ -44,7 +44,6 @@ export class ModelSetupComponent {
         this.colorSelect.setValue(this.modelSelect.value.colors.find(color => color.code == customizationService.carSummary.model.color.code) || this.nullColor)
       }
     );
-      console.log("Constructed");
     this.modelForm = new FormGroup({
       modelSelect: new FormControl<CarModels>(this.nullModel, Validators.required),
       colorSelect: new FormControl<CarColorOption>(this.nullColor, Validators.required)
@@ -52,10 +51,17 @@ export class ModelSetupComponent {
     this.colorSelect.disable();
 
     this.modelSelect.valueChanges.subscribe((model): void => {
+      if (customizationService.carSummary.model.code != '') {
+        if (customizationService.carSummary.model.code != model.code) {
+          this.setToFirst();
+        }
+      }
+
       if (model.code != '') {
         if (customizationService.carSummary.model.color.code == '') {
           this.setToFirst();
         }
+
         this.colorSelect.enable();
       }
     })
@@ -72,7 +78,6 @@ export class ModelSetupComponent {
   }
 
   setToFirst(): void {
-    console.log("set to first");
     this.colorSelect.setValue(this.modelSelect.value.colors[0]);
   }
 

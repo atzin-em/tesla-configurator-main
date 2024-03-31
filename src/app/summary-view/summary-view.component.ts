@@ -13,9 +13,11 @@ export class SummaryViewComponent {
   modelName: string;
   configName: string;
   configPrice: number;
+  carOptionText: string;
   colorName: string;
   colorPrice: number;
   extraOptions: extraOptionsDictionary<boolean> = {};
+  
 
   constructor(private carCustomizationService: CarCustomizationService) {
     let carSummary = carCustomizationService.carSummary;
@@ -26,6 +28,7 @@ export class SummaryViewComponent {
     this.colorPrice = carSummary.model.color.price;
     this.extraOptions["tow"] = carSummary.towHitch;
     this.extraOptions["yoke"] = carSummary.yoke;
+    this.carOptionText = `Range: ${carSummary.config.range} miles - Max Speed: ${carSummary.config.speed} - Cost: ${carSummary.config.price?.toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 0})}`;
   }
   get totalCost(): number {
     let totalCost: number = (this.configPrice + this.colorPrice) + (Object.values(this.extraOptions).filter(val => val == true).length * 1000);

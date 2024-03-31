@@ -2,6 +2,7 @@
     @for (route of routes; track route; let idx = $index) {
         <a mat-tab-link
             text-end
+            [id]="'Step' + (idx + 1)"
             [routerLink]="route"
             (click)="activeLink = idx"
             [active]="activeLink === idx"
