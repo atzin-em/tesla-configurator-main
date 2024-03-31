@@ -1,0 +1,23 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" fitInkBarToContent>
+    @for (route of routes; track route; let idx = $index) {
+        <a mat-tab-link
+            text-end
+            [routerLink]="route"
+            (click)="activeLink = idx"
+            [active]="activeLink === idx"
+            [disabled]="canActivate(idx)"> {{ "Step " + (idx + 1)}} 
+        </a>
+    }
+</nav>
+<div class="horizontal">
+    <router-outlet />
+    <customization-preview></customization-preview>
+</div>
+<!-- <router-outlet />
+<customization-preview /> -->
+<mat-tab-nav-panel #tabPanel>
+</mat-tab-nav-panel>
+
+
+
+ 

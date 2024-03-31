@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/purple-green.css";
+@import "../node_modules/mini.css/dist/mini-dark.min.css";
+
+.mdc-tab-indicator {
+    left: initial !important;
+}

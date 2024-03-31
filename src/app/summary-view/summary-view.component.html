@@ -1,0 +1,28 @@
+<h1>Step 3: Summary</h1>
+<h2>Your Tesla {{ modelName }}</h2>
+
+<div class="summary-container">
+    <div class="price-split">
+        <b><p>{{ configName }}</p></b>
+        <p>{{ configPrice | currency }}</p>
+    </div>
+    <div class="price-split">
+        <b><p>{{ colorName }}</p></b>
+        <p>{{ colorPrice | currency }}</p>
+    </div>
+    @for (option of extraOptions | keyvalue; track $index) {
+        @if (option.value) {
+            <div class="price-split">
+                <b><p>{{ option.key }}</p></b>
+                <p>{{ 1000 | currency }}</p>
+            </div>
+        }
+    }
+    <div class="price-split">
+        <b><p>TOTAL COST</p></b>
+        <p>{{ totalCost | currency }}</p>
+    </div>
+</div>
+
+
+
